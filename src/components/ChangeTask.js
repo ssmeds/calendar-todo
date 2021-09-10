@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const ChangeTask = ({ onChanged, oldText }) => {
+const ChangeTask = ({ onChanged, oldText, setShow, id, deadline }) => {
   const [newText, setNewText] = useState('')
   console.log('oldText', oldText);
 
@@ -12,10 +12,10 @@ const ChangeTask = ({ onChanged, oldText }) => {
       return
     }
 
-    onChanged({ newText })
+    onChanged({ newText, id, deadline })
 
     setNewText('')
-
+    setShow(false)
   }
 
   return (

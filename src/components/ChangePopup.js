@@ -5,13 +5,13 @@ import ChangeTask from './ChangeTask'
 
 
 const ChangePopup = (props) => {
-  console.log(props);
-  return (props.trigger) ? (
+
+  return (props.show) ? (
     <div className='popup'>
       <div className='popup-inner'>
         {props.children}
-        <ChangeTask deadline={props.deadline} changeTask={props.changeTask} onChanged={props.onChanged} oldText={props.oldText} />
-        <button className="close-btn" onClick={() => props.setTrigger(false)}>Close</button>
+        <ChangeTask deadline={props.deadline} onChanged={props.onChanged} oldText={props.oldText} setShow={props.setShow} id={props.id} />
+        <button className="close-btn" onClick={() => props.setShow(false)}>Close</button>
       </div>
     </div>
   ) : '';

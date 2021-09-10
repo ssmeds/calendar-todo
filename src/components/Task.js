@@ -2,29 +2,29 @@ import { FaTimes } from 'react-icons/fa'
 import { useState } from 'react'
 import ChangePopup from './ChangePopup'
 
-const Task = ({ task, onDelete, changeTask, deadline, onChanged }) => {
+const Task = ({ task, onDelete, deadline, onChanged }) => {
 
   const [changePopup, setChangePopup] = useState(false)
+
   return (
 
+    <>
+      <h3 onClick={() => {
+        setChangePopup(true)
+      }}>{task.text}
+        <p className='task-p'>{task.deadline}</p>
 
-    <h3 onClick={() => {
-      changeTask(task.id)
-      setChangePopup(true)
-    }}>{task.text}
-      <p className='task-p'>{task.deadline}</p>
+        <FaTimes
+          style={{ color: 'red', cursor: 'pointer' }}
+          onClick={() => onDelete(task.id)}
+        />
 
-      <FaTimes
-        style={{ color: 'red', cursor: 'pointer' }}
-        onClick={() => onDelete(task.id)}
-      />
-      <ChangePopup trigger={changePopup} setTrigger={setChangePopup} deadline={deadline} changeTask={changeTask} oldText={task.text} onChanged={onChanged}>
-        <h2>Vill du ändra deadline?</h2>
-        <h3>{deadline}</h3>
+      </h3>
+      <ChangePopup show={changePopup} setShow={setChangePopup} deadline={task.deadline} oldText={task.text} onChanged={onChanged} id={task.id}>
+        <h3>{task.deadline}</h3>
+        <h4>{task.text}</h4>
       </ChangePopup>
-    </h3>
-
-
+    </>
   )
 }
 

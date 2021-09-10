@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const AddTask = ({ onAdd, deadline }) => {
+const AddTask = ({ onAdd, deadline, setTrigger }) => {
   const [text, setText] = useState('')
   // console.log('deadline', deadline);
 
@@ -15,7 +15,7 @@ const AddTask = ({ onAdd, deadline }) => {
     onAdd({ text, deadline })
 
     setText('')
-
+    setTrigger(false)
   }
 
   return (

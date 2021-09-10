@@ -179,6 +179,7 @@ body {
 
 .listOfTasks {
   min-width: fit-content;
+  margin-left: 2rem;
 }
 
 .task-p {

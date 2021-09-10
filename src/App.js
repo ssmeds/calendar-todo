@@ -4,7 +4,7 @@ import Calendar from './components/Calender'
 import ListOfTasks from './components/ListOfTasks';
 // lägg till moment.format('YYYY') istället för 2021
 const year = moment().format('YYYY')
-console.log(year);
+
 const holidaysAPI = `https://sholiday.faboul.se/dagar/v2.1/${year}`
 
 function App() {
@@ -37,10 +37,10 @@ function App() {
   const fetchTask = async (id) => {
     //Get local storage objects
     let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-
+    console.log('tasks', tasks);
     //Find specific task by id
-    let task = tasks.map((task) => task.id === id)
-
+    let task = tasks.filter((task) => task.id === id)
+    console.log('task found', task);
     return task
   }
 
@@ -85,9 +85,41 @@ function App() {
 
   //CHANGE TASK
   const changeTask = async (id) => {
-    console.log(id);
-    console.log('Här är inne i changeTask');
-    // const taskToChange = await fetchTask(id)
+    console.log('id', id);
+    console.log('newText', id.newText);
+    //Get specific task to update or remove
+    const taskToChange = await fetchTask(id.id)
+    console.log('taskToChange', taskToChange);
+
+    //new entry
+    let newEntry = {
+      deadline: id.deadline,
+      id: id.id,
+      text: id.newText
+    }
+
+    console.log('newEntry', newEntry);
+
+    //fetch all tasks
+    let tasks = await fetchTasks()
+    console.log('tasks from LS', tasks);
+
+    //filter out the changed task from tasks
+    let filteredTasks = tasks.filter((task) => task.id !== id.id)
+    console.log('filteredTasks', filteredTasks);
+
+    //push new entry onto the filtered list of tasks
+    filteredTasks.push(newEntry)
+
+    //set localstorage to the new updated list of tasks
+    localStorage.setItem('tasks', JSON.stringify(filteredTasks))
+
+    //fetch updated list of tasks
+    let updatedTasks = await fetchTasks()
+
+    //settasks to that updated list of tasks
+    setTasks(updatedTasks)
+
     // const updTask = { ...taskToToggle}
 
 
@@ -101,7 +133,7 @@ function App() {
   return (
     <div className='App'>
       <div className='listOfTasks'>
-        <ListOfTasks tasks={tasks} onDelete={deleteTask} onChanged={changeTask} changeTask={changeTask} />
+        <ListOfTasks tasks={tasks} onDelete={deleteTask} onChanged={changeTask} />
       </div>
       <div>
         <Calendar value={value} onChange={setValue} onAdd={addTask} tasks={tasks} holidays={holidays} />

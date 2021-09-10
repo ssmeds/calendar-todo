@@ -3,7 +3,7 @@ import Task from './Task'
 
 
 
-const ListOfTasks = ({ tasks, onDelete, changeTask }) => {
+const ListOfTasks = ({ tasks, onDelete, onChanged }) => {
 
 
   // console.log(tasks);
@@ -16,7 +16,7 @@ const ListOfTasks = ({ tasks, onDelete, changeTask }) => {
       {/* {console.log(tasks)} */}
 
       {sortedTasks.map((task) => (
-        <Task key={task.id} task={task} onDelete={onDelete} changeTask={changeTask} />
+        <Task key={task.id} task={task} onDelete={onDelete} onChanged={onChanged} />
       ))}
 
 
