@@ -123,9 +123,9 @@ function App() {
 
   //CHANGE TASK
   const changeTask = async (id) => {
-console.log('changetask id.id', id.id);
+    console.log('changetask id.id', id.id);
     const taskToChange = await fetchTask(id.id)
-    const updTask = {...taskToChange, text:id.newText}
+    const updTask = { ...taskToChange, text: id.newText }
 
     const res = await fetch(`https://stinas-calendar-todo.herokuapp.com/tasks/${id.id}`, {
       method: 'PUT',
@@ -134,24 +134,26 @@ console.log('changetask id.id', id.id);
       },
       body: JSON.stringify(updTask)
     })
-    
+
     const data = await res.json()
-console.log('tasks', tasks);
+    console.log('data from fetch', data);
+    console.log('tasks', tasks);
 
     setTasks(
-      tasks.map(task =>{
+      tasks.map(task => {
         console.log('task.id', task.id);
         console.log('id', id);
         console.log('text', data.text);
         console.log('task', task);
         return (
-       task.id === id.id ? {...task, text: data.text} : task)})
+          task.id === id.id ? { ...task, text: data.text } : task)
+      })
     )
 
     ////////////// LOCALSTORAGE /////////////
     // //Get specific task to update or remove
     // const taskToChange = await fetchTask(id.id)
-   
+
 
     // //new entry
     // let newEntry = {
