@@ -16,7 +16,11 @@ const ListOfTasks = ({ tasks, onDelete, onChanged }) => {
       {/* {console.log(tasks)} */}
 
       {sortedTasks.map((task) => (
-        <Task key={task.id} task={task} onDelete={onDelete} onChanged={onChanged} />
+        <>
+          {sortedTasks.length > 0 ? (
+            <Task key={task.id} task={task} onDelete={onDelete} onChanged={onChanged} />
+          ) : ('Inga todos')}
+        </>
       ))}
 
 
