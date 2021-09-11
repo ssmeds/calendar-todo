@@ -1,24 +1,39 @@
 {
   "tasks": [
     {
+      "text": "Hejsan",
       "id": 1,
-      "text": "json-server",
       "deadline": "2021-09-18"
     },
     {
-      "text": "sigrid",
+      "text": "Svejsan",
       "deadline": "2021-09-15",
       "id": 3
     },
     {
-      "text": "hildegard",
+      "text": "nu då",
       "deadline": "2021-09-17",
       "id": 4
     },
     {
-      "text": "ida",
+      "text": "idag",
       "deadline": "2021-09-14",
       "id": 5
+    },
+    {
+      "text": "lägger till",
+      "deadline": "2021-09-15",
+      "id": 6
+    },
+    {
+      "text": "ännu en",
+      "deadline": "2021-09-15",
+      "id": 7
+    },
+    {
+      "text": "och sista",
+      "deadline": "2021-09-15",
+      "id": 8
     }
   ]
 }

@@ -20,10 +20,10 @@ const Calendar = ({ value, onChange, onAdd, tasks, holidays }) => {
   }, [value, tasks])
 
   return (
-    <div className='calendar'>
+    <div className='calendar' key={Math.floor(Math.random() * 10000) + 1}>
       <Header value={value} setValue={onChange} />
       <div key={Math.floor(Math.random() * 10000) + 1} className='body'>
-        <div className='day-names'>
+        <div className='day-names' key={Math.floor(Math.random()*1000) +1}> 
           {
             ['m', 't', 'o', 't', 'f', 'l', 's'].map((d) => (<div key={Math.floor(Math.random() * 10000) + 1} className="week">{d}</div>
             ))}
@@ -43,24 +43,25 @@ const Calendar = ({ value, onChange, onAdd, tasks, holidays }) => {
                   return (
                     holiday.datum === day.format('L') ?
                       <>
-                        <p className='flagg'>{holiday.flaggdag}</p>
-                        <p className='helg'>{holiday.helgdag}</p>
-                        <p className='namesday'>{holiday.namnsdag.join(' ')}</p>
+                        <p key={Math.floor(Math.random() * 10000) + 1} className='flagg'>{holiday.flaggdag}</p>
+                        <p key={Math.floor(Math.random() * 10000) + 1} className='helg'>{holiday.helgdag}</p>
+                        <p key={Math.floor(Math.random() * 10000) + 1} className='namesday'>{holiday.namnsdag.join(' ')}</p>
                       </> : ''
                   )
                 })}
 
                 {tasks.map((task) => {
                   return (
-                    task.deadline === day.format('L') ? <li key={task.id + 1} className='todos'>{task.text}</li> : ''
+                    task.deadline === day.format('L') ? <li key={task.id} className='todos'>{task.text}</li> : ''
                   )
                 })}
-                <div className={dayStyles(day, value)}>
+                <div className={dayStyles(day, value)} key={Math.floor(Math.random() * 10000) + 1}>
                   {day.format('D')}
 
                 </div>
               </div>))}
-          </div>))}</div>
+          </div>))}
+          </div>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup} deadline={deadline} onAdd={onAdd}>
         <h3>{deadline}</h3>
       </Popup>
