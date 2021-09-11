@@ -1,0 +1,24 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "text": "json-server",
+      "deadline": "2021-09-18"
+    },
+    {
+      "text": "sigrid",
+      "deadline": "2021-09-15",
+      "id": 3
+    },
+    {
+      "text": "hildegard",
+      "deadline": "2021-09-17",
+      "id": 4
+    },
+    {
+      "text": "ida",
+      "deadline": "2021-09-14",
+      "id": 5
+    }
+  ]
+}

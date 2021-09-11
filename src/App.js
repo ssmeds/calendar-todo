@@ -46,41 +46,69 @@ function App() {
 
   //FETCH TASKS
   const fetchTasks = async () => {
-    //Get local storage objects
-    let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
 
-    return tasks
+    const res = await fetch('http://localhost:5000/tasks')
+    const data = await res.json()
+    return data
+
+    ////////////// LOCALSTORAGE /////////////
+    // //Get local storage objects
+    // let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+
+    // return tasks
+    /////////////////////////////////////////
   }
 
   //ADD TASK
   const addTask = async (task) => {
-    // console.log(task);
 
-    //Get local storage objects
-    let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-    //Push to array
-    tasks.push({ id: Math.floor(Math.random() * 1000), text: task.text, deadline: task.deadline })
-    //Save to local storage
-    localStorage.setItem('tasks', JSON.stringify(tasks))
+    const res = await fetch('http://localhost:5000/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(task)
+    })
 
-    setTasks([...tasks])
-    // setTodo(task)
+    const data = await res.json()
+
+    setTasks([...tasks, data])
+
+    ////////////// LOCALSTORAGE /////////////
+    // //Get local storage objects
+    // let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+    // //Push to array
+    // tasks.push({ id: Math.floor(Math.random() * 1000), text: task.text, deadline: task.deadline })
+    // //Save to local storage
+    // localStorage.setItem('tasks', JSON.stringify(tasks))
+
+    // setTasks([...tasks])
+    // // setTodo(task)
+    /////////////////////////////////////////
   }
 
   //DELETE TASK
   const deleteTask = async (id) => {
-    // console.log('id', id);
-    //Get local storage objects
-    let LStasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-    // console.log(LStasks);
 
-    //Filter out the specific item that should be removed
-    let LStask = LStasks.filter((task) => task.id !== id)
+    await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: 'DELETE',
 
-    //Save updated object array to local storage
-    localStorage.setItem('tasks', JSON.stringify(LStask))
+    })
 
     setTasks(tasks.filter((task) => task.id !== id))
+
+    ////////////// LOCALSTORAGE /////////////
+    // //Get local storage objects
+    // let LStasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+
+    // //Filter out the specific item that should be removed
+    // let LStask = LStasks.filter((task) => task.id !== id)
+
+    // //Save updated object array to local storage
+    // localStorage.setItem('tasks', JSON.stringify(LStask))
+
+    // setTasks(tasks.filter((task) => task.id !== id))
+    /////////////////////////////////////////
   }
 
   //CHANGE TASK
