@@ -36,7 +36,8 @@ function App() {
   //FETCH TASK
   const fetchTask = async (id) => {
 
-    const res = await fetch(`http://localhost:5000/tasks/${id}`)
+    // const res = await fetch(`http://localhost:5000/tasks/${id}`)
+    const res = await fetch(`https://stinas-calendar-todo.herokuapp.com/tasks/${id}`)
     const data = await res.json()
     return data
 
@@ -55,7 +56,8 @@ function App() {
   //FETCH TASKS
   const fetchTasks = async () => {
 
-    const res = await fetch('http://localhost:5000/tasks')
+    // const res = await fetch('http://localhost:5000/tasks')
+    const res = await fetch('https://stinas-calendar-todo.herokuapp.com/tasks')
     const data = await res.json()
     return data
 
@@ -70,7 +72,7 @@ function App() {
   //ADD TASK
   const addTask = async (task) => {
 
-    const res = await fetch('http://localhost:5000/tasks', {
+    const res = await fetch('https://stinas-calendar-todo.herokuapp.com/tasks', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -98,7 +100,7 @@ function App() {
   //DELETE TASK
   const deleteTask = async (id) => {
 
-    await fetch(`http://localhost:5000/tasks/${id}`, {
+    await fetch(`https://stinas-calendar-todo.herokuapp.com/tasks/${id}`, {
       method: 'DELETE',
 
     })
@@ -125,7 +127,7 @@ console.log('changetask id.id', id.id);
     const taskToChange = await fetchTask(id.id)
     const updTask = {...taskToChange, text:id.newText}
 
-    const res = await fetch(`http://localhost:5000/tasks/${id.id}`, {
+    const res = await fetch(`https://stinas-calendar-todo.herokuapp.com/tasks/${id.id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json'
