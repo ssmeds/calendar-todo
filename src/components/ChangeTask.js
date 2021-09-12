@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 const ChangeTask = ({ onChanged, oldText, setShow, id, deadline }) => {
   const [newText, setNewText] = useState('')
-  console.log('oldText', oldText);
 
   const onSubmit = (e) => {
     e.preventDefault()

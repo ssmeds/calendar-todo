@@ -1,8 +1,4 @@
-// import TodoForm from './TodoForm'
-// import '../style.css'
 import AddTask from './AddTask'
-
-
 
 const Popup = (props) => {
 

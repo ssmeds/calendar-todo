@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 const AddTask = ({ onAdd, deadline, setTrigger }) => {
   const [text, setText] = useState('')
-  // console.log('deadline', deadline);
 
   const onSubmit = (e) => {
     e.preventDefault()

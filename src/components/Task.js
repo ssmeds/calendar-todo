@@ -2,7 +2,7 @@ import { FaTimes } from 'react-icons/fa'
 import { useState } from 'react'
 import ChangePopup from './ChangePopup'
 
-const Task = ({ task, onDelete, deadline, onChanged }) => {
+const Task = ({ task, onDelete, onChanged }) => {
 
   const [changePopup, setChangePopup] = useState(false)
 

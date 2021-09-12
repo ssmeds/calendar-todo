@@ -4,6 +4,7 @@ import { dayStyles } from './styles'
 import Header from './Header'
 import Popup from './Popup'
 
+// CONSOLE LOG so I can log from inside .map()
 // const ConsoleLog = (children) => {
 //   console.log(children)
 //   return false

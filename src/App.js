@@ -2,7 +2,7 @@ import moment from 'moment/min/moment-with-locales.js'
 import { useState, useEffect } from 'react'
 import Calendar from './components/Calender'
 import ListOfTasks from './components/ListOfTasks';
-// lägg till moment.format('YYYY') istället för 2021
+
 const year = moment().format('YYYY')
 
 const holidaysAPI = `https://sholiday.faboul.se/dagar/v2.1/${year}`
@@ -123,7 +123,6 @@ function App() {
 
   //CHANGE TASK
   const changeTask = async (id) => {
-    console.log('changetask id.id', id.id);
     const taskToChange = await fetchTask(id.id)
     const updTask = { ...taskToChange, text: id.newText }
 
@@ -136,15 +135,9 @@ function App() {
     })
 
     const data = await res.json()
-    console.log('data from fetch', data);
-    console.log('tasks', tasks);
 
     setTasks(
       tasks.map(task => {
-        console.log('task.id', task.id);
-        console.log('id', id);
-        console.log('text', data.text);
-        console.log('task', task);
         return (
           task.id === id.id ? { ...task, text: data.text } : task)
       })
