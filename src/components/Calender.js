@@ -23,7 +23,7 @@ const Calendar = ({ value, onChange, onAdd, tasks, holidays }) => {
     <div className='calendar' key={Math.floor(Math.random() * 10000) + 1}>
       <Header value={value} setValue={onChange} />
       <div key={Math.floor(Math.random() * 10000) + 1} className='body'>
-        <div className='day-names' key={Math.floor(Math.random()*1000) +1}> 
+        <div className='day-names' key={Math.floor(Math.random() * 1000) + 1}>
           {
             ['m', 't', 'o', 't', 'f', 'l', 's'].map((d) => (<div key={Math.floor(Math.random() * 10000) + 1} className="week">{d}</div>
             ))}
@@ -52,7 +52,7 @@ const Calendar = ({ value, onChange, onAdd, tasks, holidays }) => {
 
                 {tasks.map((task) => {
                   return (
-                    task.deadline === day.format('L') ? <li key={task.id} className='todos'>{task.text}</li> : ''
+                    task.deadline === day.format('L') ? <li key={Math.floor(Math.random() * 10000) + 1} className='todos'>{task.text}</li> : ''
                   )
                 })}
                 <div className={dayStyles(day, value)} key={Math.floor(Math.random() * 10000) + 1}>
@@ -61,7 +61,7 @@ const Calendar = ({ value, onChange, onAdd, tasks, holidays }) => {
                 </div>
               </div>))}
           </div>))}
-          </div>
+      </div>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup} deadline={deadline} onAdd={onAdd}>
         <h3>{deadline}</h3>
       </Popup>
